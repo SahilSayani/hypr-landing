@@ -10,7 +10,7 @@ const Navbar = () => {
     { href: "#features", label: "Features" },
     { href: "#who", label: "Who is it for" },
     { href: "#results", label: "Results" },
-    { href: "#faq", label: "FAQ" },
+    { href: "#compare", label: "FAQ" },
   ];
 
   useEffect(() => {

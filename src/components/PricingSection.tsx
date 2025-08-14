@@ -5,78 +5,81 @@ const plans = [
     name: "Monthly",
     price: "₹749",
     period: "/month",
-    description: "Perfect for trying it out",
+    originalPrice: "₹999",
+    discount: "25% off",
+    description: "Perfect for getting started",
+    monthlyRate: undefined,
+    billedNote: undefined,
     features: [
-      "AI-powered workout plans",
-      "Smart nutrition tracking",
-      "Basic progress analytics",
+      "All AI coaching features",
+      "Unlimited workouts",
+      "Basic nutrition tracking",
       "Community access",
-      "Email support"
     ],
-    popular: false
+    popular: false,
   },
   {
-    name: "6-Month Plan",
-    price: "₹949",
+    name: "3-Month Plan",
+    price: "₹1,499",
     period: "/month",
-    originalPrice: "₹4,494",
-    finalPrice: "₹5,694",
-    description: "Save ₹1,498 - Most Popular",
+    discount: "50% off monthly rate",
+    description: "Build lasting habits",
+    monthlyRate: "₹500/month",
+    billedNote: "Billed quarterly",
     features: [
       "Everything in Monthly",
       "Advanced analytics",
       "Priority support",
-      "Meal planning",
-      "Wearable integrations",
-      "Custom coaching insights"
+      "Habit tracking tools",
     ],
-    popular: true
+    popular: false,
+  },
+  {
+    name: "6-Month Plan",
+    price: "₹2,549",
+    period: "",
+    discount: "57% off monthly rate",
+    description: "Serious commitment = serious results",
+    monthlyRate: "₹425/month",
+    billedNote: "Billed every 6 months",
+    features: [
+      "Everything in 3-Month",
+      "1-on-1 coaching calls",
+      "Custom meal plans",
+      "Progress guarantees",
+    ],
+    popular: false,
   },
   {
     name: "Annual",
-    price: "₹7,490",
-    period: "/year",
+    price: "₹3,999",
+    period: "",
     originalPrice: "₹8,988",
-    description: "Serious commitment = serious results",
+    discount: "67% off monthly rate",
+    description: "Best value for transformation",
+    monthlyRate: "₹333/month",
+    billedNote: "Billed annually",
     features: [
-      "Everything in 6-Month",
-      "1-on-1 coach check-ins",
-      "Advanced recovery tracking",
-      "Nutrition photo analysis",
-      "Premium community access",
-      "Early access to new features"
+      "Everything included",
+      "Premium integrations",
+      "VIP community access",
+      "Lifetime updates",
     ],
-    popular: false
+    popular: true,
   },
-  {
-    name: "3-Month Plan", 
-    price: "₹1,499",
-    period: "/month",
-    originalPrice: "₹4,497",
-    finalPrice: "₹2,247",
-    description: "Perfect for quick wins",
-    features: [
-      "Everything in Monthly",
-      "Progress tracking",
-      "Basic meal suggestions",
-      "Workout reminders",
-      "Goal setting tools"
-    ],
-    popular: false
-  }
 ];
 
 const PricingSection = () => {
   return (
-    <section id="pricing" className="section-anchor py-20 bg-gradient-to-br from-foreground via-foreground/95 to-foreground/90">
+    <section id="pricing" className="section-anchor py-20 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Investment in Your Future Self
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3">
+            Choose Your Transformation Plan
           </h2>
-          <p className="text-xl text-white/80 max-w-2xl mx-auto">
-            Less than your monthly coffee budget. More valuable than a personal trainer.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Start your journey with any plan. Upgrade or downgrade anytime. Your progress stays with you.
           </p>
         </div>
         
@@ -88,24 +91,27 @@ const PricingSection = () => {
               className={`pricing-card ${plan.popular ? 'popular' : ''}`}
             >
               {plan.popular && (
-                <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-primary to-secondary text-white text-center py-2 text-sm font-bold rounded-t-2xl">
-                  Most Popular
-                </div>
+                <span className="absolute -top-3 right-3 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Most Popular</span>
               )}
               
-              <div className={`${plan.popular ? 'mt-8' : ''}`}>
-                <h3 className="text-xl font-bold text-foreground mb-2">{plan.name}</h3>
-                <p className="text-sm text-muted-foreground mb-6">{plan.description}</p>
+              <div className={`${plan.popular ? 'mt-2' : ''}`}>
+                <h3 className="text-xl font-bold text-foreground mb-1">{plan.name}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
                 
-                <div className="mb-6">
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-3xl font-bold text-foreground">{plan.price}</span>
-                    <span className="text-muted-foreground">{plan.period}</span>
+                <div className="mb-4">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-bold text-primary">{plan.price}</span>
+                    {plan.period && <span className="text-muted-foreground">{plan.period}</span>}
+                    {plan.originalPrice && (
+                      <span className="text-sm text-muted-foreground line-through">{plan.originalPrice}</span>
+                    )}
                   </div>
-                  {plan.originalPrice && (
-                    <div className="text-sm text-muted-foreground">
-                      <span className="line-through">{plan.originalPrice}</span>
-                      {plan.finalPrice && <span className="ml-2 font-semibold">Total: {plan.finalPrice}</span>}
+                  {plan.monthlyRate && (
+                    <div className="text-sm text-muted-foreground">{plan.monthlyRate}</div>
+                  )}
+                  {plan.discount && (
+                    <div className="mt-2 inline-flex items-center rounded-full bg-green-100 text-green-700 text-xs font-semibold px-2 py-1">
+                      {plan.discount}
                     </div>
                   )}
                 </div>
@@ -114,10 +120,13 @@ const PricingSection = () => {
                   href="https://getwaitlist.com/waitlist/29766"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full mb-6 ${plan.popular ? 'btn-accent' : 'btn-hero'} inline-flex items-center justify-center rounded-2xl`}
+                  className={`w-full mb-2 ${plan.popular ? 'btn-hero' : 'btn-secondary'} inline-flex items-center justify-center rounded-2xl`}
                 >
-                  Choose Plan
+                  Get Started
                 </a>
+                {plan.billedNote && (
+                  <div className="text-xs text-muted-foreground mb-4 text-center">{plan.billedNote}</div>
+                )}
                 
                 <ul className="space-y-3">
                   {plan.features.map((feature, featureIndex) => (
@@ -136,11 +145,11 @@ const PricingSection = () => {
         <div className="text-center">
           <div className="inline-flex items-center gap-3 glass-card px-6 py-4">
             <Heart className="w-5 h-5 text-secondary" />
-            <span className="text-white font-medium">
+            <span className="text-foreground font-medium">
               14-Day Money-Back Guarantee - If you don't see real progress, get every rupee back.
             </span>
           </div>
-          <p className="text-white/60 text-sm mt-4">
+          <p className="text-muted-foreground text-sm mt-4">
             Compare: Personal trainer ₹3,000+/month • Nutritionist ₹2,000+/month • Hyprfit: ₹749/month
           </p>
         </div>

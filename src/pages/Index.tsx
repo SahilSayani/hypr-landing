@@ -4,6 +4,7 @@ import ProblemSection from "@/components/ProblemSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import AudienceSection from "@/components/AudienceSection";
 import TestimonialSection from "@/components/TestimonialSection";
+import CompareSection from "@/components/CompareSection";
 import PricingSection from "@/components/PricingSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
@@ -17,6 +18,7 @@ const Index = () => {
       <FeaturesSection />
       <AudienceSection />
       <TestimonialSection />
+      <CompareSection />
       <PricingSection />
       {/* Anchor for FAQ nav link */}
       <div id="faq" className="section-anchor" />

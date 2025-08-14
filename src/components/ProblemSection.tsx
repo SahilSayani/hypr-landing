@@ -6,29 +6,29 @@ const ProblemSection = () => {
           {/* Left Column - Problem */}
           <div className="text-center lg:text-left">
             <h2 className="text-secondary text-lg font-semibold mb-4 uppercase tracking-wide">
-              The Brutal Truth
+            <span className="italic">The Brutal Truth</span>
             </h2>
             <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              95% of fitness apps give you the same generic plans that can be found everywhere on the internet.
+              Most fitness apps hand you the <span className="text-primary">same </span> template workouts.
             </h3>
             <p className="text-white/70 text-lg leading-relaxed">
-              Meanwhile, you're stuck doing burpees at 6 AM wondering why you're not seeing results after 3 months of "pushing through."
+              You push harder—but progress barely moves.
             </p>
           </div>
           
           {/* Right Column - Solution */}
           <div className="text-center lg:text-left">
             <h2 className="text-secondary text-lg font-semibold mb-4 uppercase tracking-wide">
-              What If Fitness Actually Fit Your Life?
+            <span className="italic">What If Fitness Actually Fit Your Life?</span>
             </h2>
             <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Hyprfit doesn't guess. It learns.
+            Hyprfit doesn't guess. <span className="text-primary">It learns.</span>
             </h3>
-            <p className="text-white/70 text-lg leading-relaxed mb-8">
-              Your schedule, your energy levels, your food preferences, even your motivation patterns.
+            <p className="text-white/70 text-lg leading-relaxed mb-2">
+              It adapts to your schedule, energy, and preferences.
             </p>
             <p className="text-white/70 text-lg leading-relaxed">
-              Then it builds a plan that evolves with you — not against you.
+              Your plan updates in real time—so you keep progressing.
             </p>
           </div>
         </div>

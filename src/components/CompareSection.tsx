@@ -26,8 +26,8 @@ function CellValue({ v, emphasize }: { v: CompareValue; emphasize?: boolean }) {
   if (v === "YES") {
     return (
       <div className="flex items-center justify-center gap-2">
-        <Check className={`w-4 h-4 ${emphasize ? "text-primary" : "text-secondary"}`} />
-        <span className={`text-xs font-semibold tracking-wide ${emphasize ? "text-primary" : "text-foreground/80"}`}>YES</span>
+        <Check className={`w-4 h-4 ${emphasize ? "text-primary" : "text-green-500"}`} />
+        <span className={`text-xs font-semibold tracking-wide ${emphasize ? "text-primary" : "text-green-500"}`}>YES</span>
       </div>
     );
   }
@@ -35,14 +35,14 @@ function CellValue({ v, emphasize }: { v: CompareValue; emphasize?: boolean }) {
     return (
       <div className="flex items-center justify-center gap-2">
         <X className="w-4 h-4 text-destructive" />
-        <span className="text-xs font-semibold tracking-wide text-foreground/60">NO</span>
+        <span className="text-xs font-semibold tracking-wide text-red-500 text-foreground/60">NO</span>
       </div>
     );
   }
   if (v === "LOW") {
     return <span className={`text-xs font-bold ${emphasize ? "text-primary" : "text-foreground/80"}`}>LOW</span>;
   }
-  return <span className="text-xs font-bold text-foreground/60">HIGH</span>;
+  return <span className="text-xs font-bold text-red-500 text-foreground/60">HIGH</span>;
 }
 
 const CompareSection = () => {

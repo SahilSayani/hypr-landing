@@ -9,7 +9,7 @@ const ProblemSection = () => {
               The Brutal Truth
             </h2>
             <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              95% of fitness apps give you the same generic workout that worked for their trainer's cousin's friend.
+              95% of fitness apps give you the same generic plans that can be found everywhere on the internet.
             </h3>
             <p className="text-white/70 text-lg leading-relaxed">
               Meanwhile, you're stuck doing burpees at 6 AM wondering why you're not seeing results after 3 months of "pushing through."

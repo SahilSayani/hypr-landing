@@ -77,7 +77,7 @@ const HeroSection = () => {
           <div
             className={`group [perspective:1600px] mr-0 lg:mr-12 xl:mr-20 will-change-transform transition-all duration-700 ease-out motion-reduce:transition-none ${mounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"}`}
           >
-            <div className="relative w-[270px] sm:w-[320px] aspect-[9/19] rounded-[2rem] border border-border shadow-glass bg-gradient-dark p-2 transform-gpu transition-transform duration-700 ease-out [transform:rotateY(-16deg)_rotateX(4deg)_rotate(2deg)] hover:[transform:rotateY(-10deg)_rotateX(3deg)_rotate(1deg)]">
+            <div className="relative w-[270px] sm:w-[320px] aspect-[9/19] rounded-[2rem] border border-border shadow-glass bg-gradient-dark p-2">
             {/* Camera notch */}
             <div className="absolute left-1/2 -translate-x-1/2 top-0 h-5 w-36 rounded-b-2xl bg-foreground/80" />
 

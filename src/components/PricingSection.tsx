@@ -135,18 +135,18 @@ const PricingSection = () => {
         </div>
         
         {/* Pricing Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 items-stretch gap-6 mb-12">
           {plans.map((plan, index) => (
-            <div key={index} className="relative group">
+            <div key={index} className="relative group h-full">
               <TiltedCard
                 glare={false}
-                className={`pricing-card ${plan.popular ? 'popular' : ''} relative overflow-hidden transition-all duration-300 border border-secondary/20 hover:border-secondary/40 hover:shadow-[0_15px_40px_-15px_hsl(var(--secondary)/0.45)]`}
+                className={`pricing-card ${plan.popular ? 'popular' : ''} relative overflow-hidden h-full flex flex-col min-h-[28rem] md:min-h-[30rem] transition-all duration-300 border border-secondary/20 hover:border-secondary/40 hover:shadow-[0_15px_40px_-15px_hsl(var(--secondary)/0.45)]`}
               >
                 {plan.popular && (
-                  <span className="absolute -top-3 right-3 bg-gradient-to-r from-secondary to-primary text-white text-xs font-semibold px-3 py-1 rounded-full shadow ring-1 ring-white/10">Most Popular</span>
+                  <span className="absolute top-3 right-3 bg-gradient-to-r from-secondary to-primary text-white text-xs font-semibold px-3 py-1 rounded-full shadow ring-1 ring-white/10">Most Popular</span>
                 )}
               
-              <div className={`${plan.popular ? 'mt-2' : ''}`}>
+              <div className={`${plan.popular ? 'mt-2' : ''} flex flex-col h-full`}>
                 <h3 className="text-xl font-bold text-foreground mb-1">{plan.name}</h3>
                 <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
                 
@@ -167,6 +167,8 @@ const PricingSection = () => {
                     </div>
                   )}
                 </div>
+                {/* Spacer to push CTA and features to bottom for consistent card height */}
+                <div className="mt-auto" />
                 
                 <a
                   href="https://getwaitlist.com/waitlist/29766"
@@ -176,9 +178,7 @@ const PricingSection = () => {
                 >
                   Get Started
                 </a>
-                {plan.billedNote && (
-                  <div className="text-xs text-muted-foreground mb-4 text-center">{plan.billedNote}</div>
-                )}
+                <div className="text-xs text-muted-foreground mb-4 text-center min-h-5">{plan.billedNote ?? ""}</div>
                 
                 <ul className="space-y-3">
                   {plan.features.map((feature, featureIndex) => (

@@ -93,16 +93,16 @@ function CountUp({ value, duration = 3500, className = "" }: { value: string; du
 
 const testimonials = [
   {
-    name: "Priya S.",
-    role: "Software Engineer, Mumbai",
+    name: "Priya M.",
+    role: "Marketing Director, Delhi",
     avatar: "P",
     quote: "I lost 15kg in 4 months without giving up my morning chai or weekend family dinners. Hyprfit actually gets how Indian families eat.",
     rating: 5
   },
   {
-    name: "Rahul M.",
-    role: "Marketing Director, Delhi", 
-    avatar: "R",
+    name: "Sahil S.",
+    role: "Software Engineer, Mumbai", 
+    avatar: "S",
     quote: "Finally hit my deadlift PR after 2 years of plateaus. The AI figured out what my old trainer couldn't - I was overtraining.",
     rating: 5
   }

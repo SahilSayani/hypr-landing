@@ -24,7 +24,7 @@ function CellValue({ v, emphasize }: { v: CompareValue; emphasize?: boolean }) {
   if (v === "YES") {
     return (
       <div className="flex items-center justify-center">
-        <Check className={`w-5 h-5 ${emphasize ? "text-primary" : "text-green-500"}`} aria-hidden="true" />
+        <Check className="w-5 h-5 text-lime-400" aria-hidden="true" />
         <span className="sr-only">Yes</span>
       </div>
     );
@@ -32,15 +32,23 @@ function CellValue({ v, emphasize }: { v: CompareValue; emphasize?: boolean }) {
   if (v === "NO") {
     return (
       <div className="flex items-center justify-center">
-        <X className="w-5 h-5 text-red-500" aria-hidden="true" />
+        <X className="w-5 h-5 text-primary" aria-hidden="true" />
         <span className="sr-only">No</span>
       </div>
     );
   }
   if (v === "LOW") {
-    return <span className={`px-2 py-0.5 rounded-md text-[10px] font-semibold ${emphasize ? "bg-primary/15 text-primary" : "bg-white/10 text-white/80"}`}>Low</span>;
+    return (
+      <span
+        className={`px-2 py-0.5 rounded-md text-[10px] font-semibold ${
+          emphasize ? "bg-secondary/15 text-secondary" : "bg-primary/15 text-primary"
+        }`}
+      >
+        Low
+      </span>
+    );
   }
-  return <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-red-500/15 text-red-400">High</span>;
+  return <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-primary/10 text-primary">High</span>;
 }
 
 const CompareSection = () => {
@@ -50,23 +58,23 @@ const CompareSection = () => {
         <h2 className="text-4xl md:text-5xl font-bold text-white">Why Hyprfit Wins</h2>
         <p className="text-white/80 mt-3 mb-10 max-w-2xl mx-auto">See the difference at a glance.</p>
 
-        <div className="overflow-hidden rounded-2xl bg-black/20 border border-white/10">
+        <div className="overflow-hidden rounded-2xl bg-black/10 border border-primary/20">
           <table className="w-full text-left">
             <thead>
               <tr className="text-white/80 text-sm">
                 <th className="px-4 py-4 font-semibold w-[36%] text-left">Feature</th>
                 <th className="px-4 py-4 font-semibold text-center">
-                  <div className="bg-gradient-to-b from-primary/20 to-primary/5 px-3 py-2 rounded-xl inline-block">Hyprfit</div>
+                  <div className="bg-gradient-to-b from-secondary/20 to-primary/10 px-3 py-2 rounded-xl inline-block">Hyprfit</div>
                 </th>
                 <th className="px-4 py-4 font-semibold text-center">Other Fitness Apps</th>
                 <th className="px-4 py-4 font-semibold text-center">Personal Trainer</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/10 [&>tr:nth-child(odd)]:bg-white/5">
+            <tbody className="divide-y divide-primary/10 [&>tr:nth-child(odd)]:bg-primary/5">
               {rows.map((r, i) => (
                 <tr key={r.feature} className="text-white/85">
                   <td className="px-4 py-4 text-left text-white/85 text-sm">{r.feature}</td>
-                  <td className={`px-4 py-4 text-center ${"bg-primary/10"}`}>
+                  <td className={`px-4 py-4 text-center ${"bg-secondary/10"}`}>
                     <CellValue v={r.hyprfit} emphasize />
                   </td>
                   <td className="px-4 py-4 text-center">

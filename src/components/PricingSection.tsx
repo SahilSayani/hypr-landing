@@ -1,4 +1,5 @@
 import { Check, Heart } from "lucide-react";
+import React, { useRef, useState } from "react";
 
 const plans = [
   {
@@ -69,6 +70,56 @@ const plans = [
   },
 ];
 
+type TiltedCardProps = {
+  className?: string;
+  children: React.ReactNode;
+  glare?: boolean;
+  maxTilt?: number;
+  scale?: number;
+};
+
+function TiltedCard({ className = "", children, glare = true, maxTilt = 12, scale = 1.015 }: TiltedCardProps) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [transform, setTransform] = useState<string>("rotateX(0deg) rotateY(0deg) scale(1)");
+  const [glareStyle, setGlareStyle] = useState<React.CSSProperties>({});
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width; // 0..1
+    const py = (e.clientY - rect.top) / rect.height; // 0..1
+    const rX = (0.5 - py) * (maxTilt * 2); // invert y for natural tilt
+    const rY = (px - 0.5) * (maxTilt * 2);
+    setTransform(`rotateX(${rX.toFixed(2)}deg) rotateY(${rY.toFixed(2)}deg) scale(${scale})`);
+    if (glare) {
+      setGlareStyle({
+        background: `radial-gradient(600px circle at ${px * 100}% ${py * 100}%, hsl(var(--secondary)/0.0), transparent 40%)`,
+      });
+    }
+  };
+
+  const onLeave = () => {
+    setTransform("rotateX(0deg) rotateY(0deg) scale(1)");
+    if (glare) setGlareStyle({});
+  };
+
+  return (
+    <div className="relative [perspective:1000px]">
+      <div
+        ref={ref}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        className={`will-change-transform transition-transform duration-150 ease-out ${className}`}
+        style={{ transform }}
+      >
+        {glare && <div aria-hidden className="pointer-events-none absolute inset-0 rounded-2xl" style={glareStyle} />}
+        {children}
+      </div>
+    </div>
+  );
+}
+
 const PricingSection = () => {
   return (
     <section id="pricing" className="section-anchor py-20 bg-background">
@@ -86,13 +137,14 @@ const PricingSection = () => {
         {/* Pricing Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {plans.map((plan, index) => (
-            <div 
-              key={index}
-              className={`pricing-card ${plan.popular ? 'popular' : ''}`}
-            >
-              {plan.popular && (
-                <span className="absolute -top-3 right-3 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Most Popular</span>
-              )}
+            <div key={index} className="relative group">
+              <TiltedCard
+                glare={false}
+                className={`pricing-card ${plan.popular ? 'popular' : ''} relative overflow-hidden transition-all duration-300 border border-secondary/20 hover:border-secondary/40 hover:shadow-[0_15px_40px_-15px_hsl(var(--secondary)/0.45)]`}
+              >
+                {plan.popular && (
+                  <span className="absolute -top-3 right-3 bg-gradient-to-r from-secondary to-primary text-white text-xs font-semibold px-3 py-1 rounded-full shadow ring-1 ring-white/10">Most Popular</span>
+                )}
               
               <div className={`${plan.popular ? 'mt-2' : ''}`}>
                 <h3 className="text-xl font-bold text-foreground mb-1">{plan.name}</h3>
@@ -110,7 +162,7 @@ const PricingSection = () => {
                     <div className="text-sm text-muted-foreground">{plan.monthlyRate}</div>
                   )}
                   {plan.discount && (
-                    <div className="mt-2 inline-flex items-center rounded-full bg-green-100 text-green-700 text-xs font-semibold px-2 py-1">
+                    <div className="mt-2 inline-flex items-center rounded-full bg-primary/15 text-primary text-xs font-semibold px-2 py-1">
                       {plan.discount}
                     </div>
                   )}
@@ -131,12 +183,18 @@ const PricingSection = () => {
                 <ul className="space-y-3">
                   {plan.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start gap-2 text-sm">
-                      <Check className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                      <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <span className="text-muted-foreground">{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+              </TiltedCard>
+              {/* External secondary glow (outside the card only) */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-24 -z-10 opacity-0 group-hover:opacity-100 transition duration-500 blur-3xl bg-[radial-gradient(ellipse_at_center,_hsl(var(--secondary)/0.28)_0%,_transparent_60%)]"
+              />
             </div>
           ))}
         </div>

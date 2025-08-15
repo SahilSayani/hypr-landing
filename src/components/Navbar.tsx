@@ -46,7 +46,7 @@ const Navbar = () => {
             ) : (
               <div className="flex items-center gap-3">
                 <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-secondary" />
-                <span className="text-lg font-bold text-white tracking-tight">HYPRFIT</span>
+                <span className="text-lg font-bold text-foreground tracking-tight">HYPRFIT</span>
               </div>
             )}
           </a>
@@ -66,7 +66,7 @@ const Navbar = () => {
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/90 hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-foreground/15 text-foreground hover:bg-foreground/5 focus:outline-none focus:ring-2 focus:ring-primary/50"
             aria-label="Toggle Menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -77,13 +77,13 @@ const Navbar = () => {
 
         {/* Mobile menu */}
         {open && (
-          <div className="md:hidden mt-3 rounded-xl border border-white/10 bg-background/80 p-4 shadow-lg">
+          <div className="md:hidden mt-3 rounded-xl border border-foreground/10 bg-white p-4 shadow-lg">
             <ul className="space-y-3">
               {links.map((l) => (
                 <li key={l.href}>
                   <a
                     href={l.href}
-                    className="block w-full rounded-lg px-3 py-2 text-white/90 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+                    className="block w-full rounded-lg px-3 py-2 text-foreground hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                     onClick={() => setOpen(false)}
                   >
                     {l.label}
